@@ -10,7 +10,8 @@ const {
   Review,
   Order,
   Product,
-  Category
+  Category,
+  ProductOrder
 } = require('../server/db/models');
 
 const userGenerator = () => {
@@ -108,7 +109,7 @@ async function seed() {
     lastName: 'cody',
     address: ['123 Road'],
     creditCardNumber: 999999999,
-    imageUrl: `https://robohash.org/${firstName}--${lastName}`
+    imageUrl: `https://robohash.org/cody--cody`
   });
 
   await Promise.all(users.map(user => User.create(user)));
@@ -162,6 +163,42 @@ async function seed() {
       });
     });
   }
+
+  //************PAST ORDERS DATA SEEDS*************
+
+  await Order.create({
+    total: 100.21,
+    status: 'Created',
+    shippingAddress: '123 Sunset Road',
+    userId: 2
+  });
+
+  await Order.create({
+    total: 23.55,
+    status: 'Created',
+    shippingAddress: '123 Sunset Road',
+    userId: 2
+  });
+
+  await ProductOrder.create({
+    quantity: 2,
+    unitPrice: 5,
+    productId: 12,
+    orderId: 11
+  });
+
+  await ProductOrder.create({
+    quantity: 3,
+    unitPrice: 10,
+    productId: 15,
+    orderId: 11
+  });
+  await ProductOrder.create({
+    quantity: 1,
+    unitPrice: 10,
+    productId: 13,
+    orderId: 12
+  });
 
   await Promise.all(reviews.map(review => Review.create(review)));
   console.log(green(`seeded successfully`));

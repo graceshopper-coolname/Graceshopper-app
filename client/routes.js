@@ -11,7 +11,8 @@ import {
   allUsers,
   SingleProduct,
   SingleUser,
-  Cart
+  Cart,
+  PastOrders
 } from './components';
 
 /**
@@ -35,6 +36,7 @@ class Routes extends Component {
         <Route exact path="/products" component={allProducts} />
         <Route exact path="/users" component={allUsers} />
         <Route path="/cart" component={Cart} />
+        <Route path="/pastOrders" component={PastOrders} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
