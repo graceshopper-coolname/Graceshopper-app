@@ -2,6 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getPastOrdersThunk } from '../store/pastOrders';
 import { PastOrdersCard } from './pastOrdersCard';
+import {
+  Container,
+  Button,
+  Card,
+  Image,
+  Rating,
+  Icon,
+  Grid,
+  Row
+} from 'semantic-ui-react';
 
 export class pastOrders extends React.Component {
   async componentDidMount() {
@@ -16,11 +26,13 @@ export class pastOrders extends React.Component {
         <div>
           <h2>Your past orders:</h2>
         </div>
-        <div>
+        <Grid divided="vertically">
           {pastOrders.map(order => (
-            <PastOrdersCard key={order.id} order={order} />
+            <Grid.Row columns={1}>
+              <PastOrdersCard key={order.id} order={order} />
+            </Grid.Row>
           ))}
-        </div>
+        </Grid>
       </div>
     );
   }
