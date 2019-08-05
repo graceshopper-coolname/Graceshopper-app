@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Product, Review, Category } = require('../db/models');
 const Sequelize = require('sequelize');
+const isAdmin = require('../middleware');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
@@ -79,7 +80,8 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:productId', async (req, res, next) => {
+// Priti comment: restrict to admins? --> example below
+router.delete('/:productId', isAdmin, async (req, res, next) => {
   try {
     await Product.destroy({
       where: {
@@ -92,6 +94,7 @@ router.delete('/:productId', async (req, res, next) => {
   }
 });
 
+// Priti comment: restrict to admins?
 router.post('/', async (req, res, next) => {
   try {
     const newProduct = await Product.create(req.body);
@@ -100,3 +103,5 @@ router.post('/', async (req, res, next) => {
     next(err);
   }
 });
+
+// Priti comment: put route for admins to be able to update product?

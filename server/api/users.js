@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User } = require('../db/models');
 module.exports = router;
 
+// Priti comment: restrict to admins?
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -16,6 +17,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// Priti comment: restrict to admins?
 router.delete('/:userId', async (req, res, next) => {
   try {
     await User.destroy({
@@ -29,6 +31,7 @@ router.delete('/:userId', async (req, res, next) => {
   }
 });
 
+// Priti comment: restrict to admins?
 router.get('/:id', async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.id);

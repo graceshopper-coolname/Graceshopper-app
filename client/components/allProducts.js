@@ -48,6 +48,7 @@ export class allProducts extends React.Component {
   render() {
     console.log('PROPS', this.props);
     const products = this.props.products;
+    // Priti comment: adding an option to view all?
     const categoryOptions = [
       {
         key: 'Dog',
@@ -139,6 +140,7 @@ export class allProducts extends React.Component {
                       </Button>
                     </Grid.Column>
                     <Grid.Column>
+                      {/* Priti comment: hide this button unless you're an admin? */}
                       <Button
                         content="Delete"
                         negative

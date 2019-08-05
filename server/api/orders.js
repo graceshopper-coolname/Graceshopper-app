@@ -16,6 +16,7 @@ module.exports = router;
 //   }
 // });
 
+// Priti comment: restrict to admins?
 router.get('/', async (req, res, next) => {
   try {
     const allOrders = await Order.findAll();

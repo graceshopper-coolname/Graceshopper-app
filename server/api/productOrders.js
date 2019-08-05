@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { ProductOrder, Order, User } = require('../db/models');
 module.exports = router;
 
+// Priti comment: restrict to admins?
 router.get('/', async (req, res, next) => {
   try {
     const allOrders = await ProductOrder.findAll();

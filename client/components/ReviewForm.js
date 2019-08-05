@@ -46,6 +46,7 @@ class ReviewForm extends React.Component {
                 <label htmlFor="star">
                   What would you rate it from 0 to 5 stars?
                 </label>
+                {/* Priti comment: have this be a dropdown? */}
                 <input
                   onChange={this.handleChange}
                   name="star"

@@ -11,6 +11,7 @@ import cartReducer from './cart';
 import typeReducer from './userType';
 import productReviewsReducer from './reviews';
 
+// Priti comments: updating names of items in your store
 const reducer = combineReducers({
   user,
   allProductsReducer,
