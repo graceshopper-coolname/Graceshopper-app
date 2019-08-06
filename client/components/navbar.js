@@ -55,7 +55,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin }) => (
           {isAdmin && (
             <NavLink to="/productForm">
               <Button basic color="orange">
-                Create new product
+                Create New Product
               </Button>
             </NavLink>
           )}
