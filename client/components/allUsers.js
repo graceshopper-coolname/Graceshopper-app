@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { Button } from 'semantic-ui-react';
+import { Button, Card, Container, Grid, Icon, Image } from 'semantic-ui-react';
 import { getAllUsersThunk, deleteUserThunk } from '../store/allUsers';
 
 export class allUsers extends React.Component {
@@ -18,28 +18,35 @@ export class allUsers extends React.Component {
     const users = this.props.users;
     return (
       <div>
-        <ul id="UsersList">
+        <Card.Group itemsPerRow={4}>
           {users.map(user => {
+            console.log('USER', user);
             return (
-              <li key={user.id}>
-                <NavLink to={`users/${user.id}`}>
-                  FIRST NAME: {user.firstName}
-                  LAST NAME : {user.lastName}
-                  ADDRESS: {user.address}
-                </NavLink>
-
-                <img className="user-image" src={user.imageUrl} />
-                <Button
-                  type="button"
-                  className="remove"
-                  onClick={event => this.handleDelete(event, user.id)}
-                >
-                  DELETE USER
-                </Button>
-              </li>
+              <Card>
+                <Image src={user.imageUrl} wrapped ui={false} />
+                <Card.Content>
+                  <Card.Header>
+                    <NavLink to={`users/${user.id}`}>
+                      {user.firstName} {user.lastName}
+                    </NavLink>
+                  </Card.Header>
+                  <Card.Meta>
+                    <span className="date">{user.address}</span>
+                  </Card.Meta>
+                </Card.Content>
+                <Card.Content>
+                  <Button
+                    type="button"
+                    className="remove"
+                    onClick={event => this.handleDelete(event, user.id)}
+                  >
+                    DELETE USER
+                  </Button>
+                </Card.Content>
+              </Card>
             );
           })}
-        </ul>
+        </Card.Group>
       </div>
     );
   }
