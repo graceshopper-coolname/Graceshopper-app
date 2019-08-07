@@ -3,13 +3,12 @@ const { Order } = require('../db/models');
 
 module.exports = router;
 
-// eslint-disable-next-line complexity
 router.get('/', async (req, res, next) => {
   try {
-    if (req.user) {
-      const orders = await Order.findAll({ include: [{ all: true }] });
-      res.json(orders);
-    } else if (req.user === undefined || req.query.userId === undefined) {
+    console.log('req.user:   ', req.user);
+    console.log('req.query.userId:', req.query.userId);
+
+    if (req.user === undefined || req.query.userId === undefined) {
       if (req.session.cartId === undefined) {
         const newOrder = await Order.create({
           status: 'Cart',
@@ -69,6 +68,15 @@ router.get('/', async (req, res, next) => {
 
       console.log('session.cartId: ', req.session.cartId);
     }
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get('/all', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({ include: [{ all: true }] });
+    res.json(orders);
   } catch (error) {
     next(error);
   }
