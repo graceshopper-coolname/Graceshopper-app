@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getAllOrdersThunk } from '../store/pastOrders';
 import { NavLink } from 'react-router-dom';
 
-import { Card, Image, Grid } from 'semantic-ui-react';
+import { Card, Image, Grid, Segment } from 'semantic-ui-react';
 import user from '../store/user';
 
 class CompanyOrders extends React.Component {
@@ -49,42 +49,10 @@ class CompanyOrders extends React.Component {
           <option value="Processing">Processing</option>
           <option value="Cancelled">Cancelled</option>
         </select>
-        <Grid columns={3} doubling stackable>
+
+        <Card.Group itemsPerRow={5}>
           {filteredOrders &&
             filteredOrders.map(order => {
-              console.log('ORDERRRRR', order);
-              return (
-                <Grid.Column key={order.id}>
-                  <div>
-                    <Image src={order.user.imageUrl} />
-                    <h3>
-                      User: {`${order.user.firstName} ${order.user.lastName}`}
-                    </h3>
-                    <h3>Email: {order.user.email}</h3>
-                    <h3>Address: {order.shippingAddress || `N/A`}</h3>
-                    <h3>Total: {`$${order.total}`}</h3>
-                    <h3>Status: {order.status}</h3>
-                    <ul>
-                      {order.products.map(product => {
-                        return (
-                          <NavLink
-                            key={product.id}
-                            to={`products/${product.id}`}
-                          >
-                            <li>{product.name}</li>
-                          </NavLink>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </Grid.Column>
-              );
-            })}
-        </Grid>
-        {/* <Card.Group itemsPerRow={5}>
-          {filteredOrders &&
-            filteredOrders.map(order => {
-              console.log('ORDERRRRR', order);
               return (
                 <Card key={order.id}>
                   <div>
@@ -112,7 +80,7 @@ class CompanyOrders extends React.Component {
                 </Card>
               );
             })}
-        </Card.Group> */}
+        </Card.Group>
       </div>
     );
   }
